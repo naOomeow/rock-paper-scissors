@@ -11,15 +11,15 @@ let computerScore = 0;
 function getComputerChoice() {
     const computedNumber = Math.floor(Math.random() * 3);
     if (computedNumber == 0) {
-        console.log('Computer Throws Rock');
+        console.log('Computer chose Rock');
         computerChoice = 0;
         return 'Rock';
     } else if (computedNumber == 1) {
-        console.log('Computer Throws Paper');
+        console.log('Computer chose Paper');
         computerChoice = 1;
         return 'Paper';
     } else {
-        console.log('Computer Throws Scissors');
+        console.log('Computer chose Scissors');
         computerChoice = 2;
         return 'Scissors';
     };
@@ -32,7 +32,7 @@ function getHumanChoice() {
     
     function formatChoice(){
         humanChoiceprompt = humanChoiceprompt.toLowerCase().trim();       
-    }
+    };
 
     function choiceToNum() {
         if (humanChoiceprompt == 'rock') {
@@ -46,13 +46,13 @@ function getHumanChoice() {
             // console.log(humanThrow);
         } else {
             console.log('not valid!');
-        }
+        };
     };
 
     formatChoice()
     choiceToNum()
     console.log('human chose ' + humanChoiceprompt);
-}
+};
 
 function playRound(computerChoice, humanChoice) {
     if (computerChoice > humanChoice) {
@@ -63,9 +63,9 @@ function playRound(computerChoice, humanChoice) {
         humanScore += 1;
     } else {
         console.log('Its a tie!');
-    }
+    };
     
-}
+};
 
 function computerToString(computerChoice) {
     if (computerChoice == 0) {
@@ -74,9 +74,9 @@ function computerToString(computerChoice) {
         computerString = 'Paper';
     }else {
         computerString = 'Scissors';
-    }
+    };
     
-}
+};
 
 function playerToString(humanChoice) {
     if (humanChoice == 0) {
@@ -85,13 +85,20 @@ function playerToString(humanChoice) {
         humanString = 'Paper';
     }else {
         humanString = 'Scissors';
-    }
+    };
     
-}
+};
+
+function displayScore(computerScore, humanScore) {
+    console.log('Human score is ' + humanScore);
+    console.log('Computer score is ' + computerScore);  
+};
+
 
 getHumanChoice();
 getComputerChoice();
 computerToString(computerChoice);
 playerToString(humanChoice);
 playRound(computerChoice, humanChoice);
-// compare values 
+displayScore(computerScore, humanScore);
+ 
