@@ -6,7 +6,7 @@ let computerString = 'none';
 let humanScore = 0;
 let computerScore = 0;
 
-let roundsTotal = 5;
+const roundsTotal = 5;
 
 
 
@@ -49,6 +49,7 @@ function getHumanChoice() {
             // console.log(humanThrow);
         } else {
             console.log('not valid!');
+            alert('not valid selection!')
         };
     };
 
@@ -99,12 +100,12 @@ function displayScore(computerScore, humanScore) {
 };
 
 function gameWinner() {
-    if (humanScore == 5 || humanScore > computerScore) {
+    if (humanScore > computerScore) {
         console.log('========🏆=🏆=🏆==========')
         console.log('HUMAN WON THE GAME!')
         alert('HUMAN WINS 🏆=🏆=🏆')
         console.log('========🏆=🏆=🏆==========')
-    } else if (computerScore == 5 || computerScore > humanScore) {
+    } else if (computerScore > humanScore) {
         console.log('========🏆=🏆=🏆==========')
         console.log('COMPUTER WON THE GAME!')
         alert('COMPUTER WINS 🏆=🏆=🏆')
