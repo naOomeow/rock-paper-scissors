@@ -55,7 +55,6 @@ function clickStart() {
     buttonsBox.appendChild(sciccorsButton);
     choice.textContent = `Choose Option`;
     console.log(`Game Start!`);
-    playGame();
     
 };
 
