@@ -9,7 +9,7 @@ let computerScore = 0;
 const roundsTotal = 5;
 
 
-
+//dont touch
 function getComputerChoice() {
     const computedNumber = Math.floor(Math.random() * 3);
     if (computedNumber == 0) {
@@ -30,6 +30,7 @@ function getComputerChoice() {
     };
 };
 
+//change
 function getHumanChoice() {
     let humanChoiceprompt = prompt('Rock Paper or Scissors?');
     
@@ -59,6 +60,7 @@ function getHumanChoice() {
     alert('human chose ' + humanChoiceprompt);
 };
 
+//sont touch
 function playRound(computerChoice, humanChoice) {
     if (computerChoice > humanChoice) {
         console.log('computer wins! ' + computerString + ' beats ' + humanString);
@@ -72,6 +74,7 @@ function playRound(computerChoice, humanChoice) {
     
 };
 
+//dont touch
 function computerToString(computerChoice) {
     if (computerChoice == 0) {
         computerString = 'Rock';
@@ -83,6 +86,7 @@ function computerToString(computerChoice) {
     
 };
 
+//will be void after chaging human choice to button
 function playerToString(humanChoice) {
     if (humanChoice == 0) {
         humanString = 'Rock';
@@ -94,11 +98,13 @@ function playerToString(humanChoice) {
     
 };
 
+//change from console to dom
 function displayScore(computerScore, humanScore) {
     console.log('Human score is ' + humanScore);
     console.log('Computer score is ' + computerScore);  
 };
 
+//change to dom
 function gameWinner() {
     if (humanScore > computerScore) {
         console.log('========🏆=🏆=🏆==========')
@@ -113,6 +119,7 @@ function gameWinner() {
     }
 };  
 
+//not change
 function mainGame() {
     console.log('==============ROUND=============')
     getHumanChoice();
@@ -127,18 +134,24 @@ function mainGame() {
 
 };
 
-//5 rounds system
-// function playGame() {
+// change to 5 wins
+function playGame() {
     
-//     for (i = 0; i < roundsTotal;){
-//         mainGame();
-//         i++;
+    for (i = 0; i < roundsTotal;){
+        mainGame();
+        i++;
         
-//     };
+    };
 
-//     gameWinner();
+    gameWinner();
     
-// };
+};
 
-playGame();
 
+//dom
+const start = document.querySelector(`#start-button`);
+
+start.addEventListener(`click`, () => {
+    console.log(`Game Start!`)
+    playGame();
+});
