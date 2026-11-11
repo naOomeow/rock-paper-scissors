@@ -107,18 +107,14 @@ function playerToString(humanChoice) {
 
 //dont touch
 function playRound(computerChoice, humanChoice) {
-    if (computerChoice > humanChoice) {
-        console.log('computer wins! ' + computerString + ' beats ' + humanString);
-        computerScore += 1;
-        
-        
-        
-    } else if (humanChoice > computerChoice) {
-        console.log('human wins! '+ humanString + ' beats ' + computerString)
-        humanScore += 1;
-        
+    if ((humanChoice === 0 && computerChoice === 2)
+        || (humanChoice === 1 && computerChoice === 0)
+        || (humanChoice === 2 && computerChoice === 1)) {
+        humanScore += 1; 
+    } else if (humanChoice === computerChoice) {
+        console.log(`Its a Tie!`);
     } else {
-        console.log('Its a tie!');
+        computerScore += 1;
     };
     
 };
