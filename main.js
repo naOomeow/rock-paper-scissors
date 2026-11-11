@@ -4,7 +4,7 @@ let humanString = 'none';
 let computerString = 'none';
 
 let humanScore = 0;
-let computerScore = 0;
+let computerScore = 0;  
 
 const roundsTotal = 5;
 
@@ -127,19 +127,18 @@ function mainGame() {
 
 };
 
-
-function playGame() {
+//5 rounds system
+// function playGame() {
     
-    for (i = 0; i < roundsTotal;){
-        mainGame();
-        i++;
+//     for (i = 0; i < roundsTotal;){
+//         mainGame();
+//         i++;
         
-    };
+//     };
 
-    gameWinner();
+//     gameWinner();
     
-};
+// };
 
 playGame();
 
- 
