@@ -4,7 +4,7 @@ const humanShowScore = document.querySelector(`#human`);
 const computerShowScore = document.querySelector(`#computer`);
 const choiceShow = document.querySelector(`#choice`);
 const buttonsBox = document.querySelector(`#buttons-box`);
-
+const displayChoice = document.querySelector(`#display-choice`);
 //buttons DOM
 const start = document.querySelector(`#start-button`);
 
@@ -27,16 +27,23 @@ sciccorsButton.classList.add(`buttons-style`);
 sciccorsButton.textContent = `✂️`;
 
 //choices
+const humanchose = document.createElement(`h5`);
+displayChoice.appendChild(humanchose);
+humanchose.style.justifyContent = `center`;
 rockButton.addEventListener(`click`, () => {
     humanChoice = 0;
+    humanchose.textContent = `Human Chose Rock!`;
     mainGame();
 });
 paperButton.addEventListener(`click`, () => {
     humanChoice = 1;
+    humanchose.textContent = `Human Chose Paper!`;
+
     mainGame();
 });
 sciccorsButton.addEventListener(`click`, () => {
     humanChoice = 2;
+    humanchose.textContent = `Human Chose Scissor!`;
     mainGame();
 });
 
@@ -85,6 +92,17 @@ function getComputerChoice() {
     };
 };
 
+function playerToString(humanChoice) {
+    if (humanChoice == 0) {
+        humanString = 'Rock';
+    } else if (humanChoice == 1){
+        humanString = 'Paper';
+    }else {
+        humanString = 'Scissors';
+    };
+    
+};
+
 
 
 
@@ -94,12 +112,12 @@ function playRound(computerChoice, humanChoice) {
         console.log('computer wins! ' + computerString + ' beats ' + humanString);
         computerScore += 1;
         
-        computerShowScore.textContent = humanScore;
+        
+        
     } else if (humanChoice > computerChoice) {
         console.log('human wins! '+ humanString + ' beats ' + computerString)
         humanScore += 1;
         
-        humanShowScore.textContent = computerScore;
     } else {
         console.log('Its a tie!');
     };
@@ -118,12 +136,15 @@ function computerToString(computerChoice) {
     
 };
 
+
+
+
 // no touch
 function displayScore(computerScore, humanScore) {
     console.log('Human score is ' + humanScore);
     console.log('Computer score is ' + computerScore);
-    humanShowScore.textContent = humanScore;
     computerShowScore.textContent = computerScore;
+    humanShowScore.textContent = humanScore;
 };
 
 //change to dom
@@ -137,7 +158,7 @@ function gameWinner() {
     } else if (computerScore > humanScore) {
         console.log('========🏆=🏆=🏆==========')
         console.log('COMPUTER WON THE GAME!')
-        choiceShow.textContent = `COMPUTER WON THE GAME!`;
+        choiceShow.textContent = `COMPUTER WON THE GAME! `;
         console.log('========🏆=🏆=🏆==========')
     }
 };  
@@ -159,10 +180,8 @@ function mainGame() {
 // change to 5 wins
 function playGame() {
     
-    for (let i = 0; i > computerScore || i > humanScore;){
+    for (let i = roundsTotal; i > computerScore || i > humanScore; i--){
         mainGame();
-        i++;
-        
     };
 
     gameWinner();
