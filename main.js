@@ -1,3 +1,5 @@
+
+//variables
 let humanChoice = -1;
 let computerChoice = -1;
 let humanString = 'none';
@@ -14,17 +16,17 @@ function getComputerChoice() {
     const computedNumber = Math.floor(Math.random() * 3);
     if (computedNumber == 0) {
         console.log('Computer chose Rock');
-        alert('Computer chose Rock');
+        choiceShow.textContent = 'Computer chose Rock';
         computerChoice = 0;
         return 'Rock';
     } else if (computedNumber == 1) {
         console.log('Computer chose Paper');
-        alert('Computer chose Paper');
+        choiceShow.textContent = 'Computer chose Paper';
         computerChoice = 1;
         return 'Paper';
     } else {
         console.log('Computer chose Scissors');
-        alert('Computer chose Scissors');
+        choiceShow.textContent = 'Computer chose Scissors';
         computerChoice = 2;
         return 'Scissors';
     };
@@ -50,17 +52,17 @@ function getHumanChoice() {
             // console.log(humanThrow);
         } else {
             console.log('not valid!');
-            alert('not valid selection!')
+            
         };
     };
 
     formatChoice()
     choiceToNum()
     console.log('human chose ' + humanChoiceprompt);
-    alert('human chose ' + humanChoiceprompt);
+    
 };
 
-//sont touch
+//dont touch
 function playRound(computerChoice, humanChoice) {
     if (computerChoice > humanChoice) {
         console.log('computer wins! ' + computerString + ' beats ' + humanString);
@@ -68,6 +70,7 @@ function playRound(computerChoice, humanChoice) {
     } else if (humanChoice > computerChoice) {
         console.log('human wins! '+ humanString + ' beats ' + computerString)
         humanScore += 1;
+        
     } else {
         console.log('Its a tie!');
     };
@@ -101,7 +104,10 @@ function playerToString(humanChoice) {
 //change from console to dom
 function displayScore(computerScore, humanScore) {
     console.log('Human score is ' + humanScore);
-    console.log('Computer score is ' + computerScore);  
+    console.log('Computer score is ' + computerScore);
+    humanShowScore.textContent = computerScore;
+    computerShowScore.textContent = humanScore;
+
 };
 
 //change to dom
@@ -109,12 +115,13 @@ function gameWinner() {
     if (humanScore > computerScore) {
         console.log('========🏆=🏆=🏆==========')
         console.log('HUMAN WON THE GAME!')
-        alert('HUMAN WINS 🏆=🏆=🏆')
+        choiceShow.textContent = `HUMAN WON THE GAME!`
+        
         console.log('========🏆=🏆=🏆==========')
     } else if (computerScore > humanScore) {
         console.log('========🏆=🏆=🏆==========')
         console.log('COMPUTER WON THE GAME!')
-        alert('COMPUTER WINS 🏆=🏆=🏆')
+        choiceShow.textContent = `COMPUTER WON THE GAME!`;
         console.log('========🏆=🏆=🏆==========')
     }
 };  
@@ -137,7 +144,7 @@ function mainGame() {
 // change to 5 wins
 function playGame() {
     
-    for (i = 0; i < roundsTotal;){
+    for (let i = 0; i < computerScore || i < humanScore;){
         mainGame();
         i++;
         
@@ -147,11 +154,39 @@ function playGame() {
     
 };
 
+//DOMimport
+const humanShowScore = document.querySelector(`#human`);
+const computerShowScore = document.querySelector(`#computer`);
+const choiceShow = document.querySelector(`#choice`);
+const buttonsBox = document.querySelector(`#buttons-box`);
 
-//dom
+//buttons DOM
 const start = document.querySelector(`#start-button`);
 
-start.addEventListener(`click`, () => {
-    console.log(`Game Start!`)
-    playGame();
-});
+start.addEventListener(`click`, clickStart);
+
+//rockButton
+const rockButton = document.createElement(`button`);
+rockButton.setAttribute(`id`, `rockButton`);
+rockButton.classList.add(`buttons-style`);
+rockButton.textContent = `🪨`;
+//paperButton
+const paperButton = document.createElement(`button`);
+paperButton.setAttribute(`id`, `paperButton`);
+paperButton.classList.add(`buttons-style`);
+paperButton.textContent = `📜`;
+//sciccorsButton
+const sciccorsButton = document.createElement(`button`);
+sciccorsButton.setAttribute(`id`, `sciccorsButton`);
+sciccorsButton.classList.add(`buttons-style`);
+sciccorsButton.textContent = `✂️`;
+
+function clickStart() {
+    start.remove();
+    buttonsBox.appendChild(rockButton);
+    buttonsBox.appendChild(paperButton);
+    buttonsBox.appendChild(sciccorsButton);
+    choice.textContent = `Choose Option`;
+    console.log(`Game Start!`);
+    
+};
