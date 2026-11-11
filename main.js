@@ -168,6 +168,15 @@ function mainGame() {
     console.log('------CHOICE-------')
     playRound(computerChoice, humanChoice);
     console.log('------SCORES-------')
+
+    if (humanScore === 5 || computerScore === 5) {
+        gameWinner();
+        rockButton.remove();
+        paperButton.remove();
+        sciccorsButton.remove();
+        humanchose.remove();
+    };
+
     displayScore(computerScore, humanScore);
 
 };
