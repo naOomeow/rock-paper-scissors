@@ -1,4 +1,57 @@
 
+//DOMimport
+const humanShowScore = document.querySelector(`#human`);
+const computerShowScore = document.querySelector(`#computer`);
+const choiceShow = document.querySelector(`#choice`);
+const buttonsBox = document.querySelector(`#buttons-box`);
+
+//buttons DOM
+const start = document.querySelector(`#start-button`);
+
+start.addEventListener(`click`, clickStart);
+
+//rockButton
+const rockButton = document.createElement(`button`);
+rockButton.setAttribute(`id`, `rockButton`);
+rockButton.classList.add(`buttons-style`);
+rockButton.textContent = `🪨`;
+//paperButton
+const paperButton = document.createElement(`button`);
+paperButton.setAttribute(`id`, `paperButton`);
+paperButton.classList.add(`buttons-style`);
+paperButton.textContent = `📜`;
+//sciccorsButton
+const sciccorsButton = document.createElement(`button`);
+sciccorsButton.setAttribute(`id`, `sciccorsButton`);
+sciccorsButton.classList.add(`buttons-style`);
+sciccorsButton.textContent = `✂️`;
+
+//choices
+rockButton.addEventListener(`click`, () => {
+    humanChoice = 0;
+    mainGame();
+});
+paperButton.addEventListener(`click`, () => {
+    humanChoice = 1;
+    mainGame();
+});
+sciccorsButton.addEventListener(`click`, () => {
+    humanChoice = 2;
+    mainGame();
+});
+
+//on start button click
+function clickStart() {
+    start.remove();
+    buttonsBox.appendChild(rockButton);
+    buttonsBox.appendChild(paperButton);
+    buttonsBox.appendChild(sciccorsButton);
+    choice.textContent = `Choose Option`;
+    console.log(`Game Start!`);
+    playGame();
+    
+};
+
 //variables
 let humanChoice = -1;
 let computerChoice = -1;
@@ -32,45 +85,21 @@ function getComputerChoice() {
     };
 };
 
-//change
-function getHumanChoice() {
-    let humanChoiceprompt = prompt('Rock Paper or Scissors?');
-    
-    function formatChoice(){
-        humanChoiceprompt = humanChoiceprompt.toLowerCase().trim();       
-    };
 
-    function choiceToNum() {
-        if (humanChoiceprompt == 'rock') {
-            humanChoice = 0;
-            // console.log(humanThrow);
-        } else if( humanChoiceprompt == 'paper'){
-            humanChoice = 1;
-            // console.log(humanThrow);
-        } else if (humanChoiceprompt == 'scissors') {
-            humanChoice = 2;
-            // console.log(humanThrow);
-        } else {
-            console.log('not valid!');
-            
-        };
-    };
 
-    formatChoice()
-    choiceToNum()
-    console.log('human chose ' + humanChoiceprompt);
-    
-};
 
 //dont touch
 function playRound(computerChoice, humanChoice) {
     if (computerChoice > humanChoice) {
         console.log('computer wins! ' + computerString + ' beats ' + humanString);
         computerScore += 1;
+        
+        computerShowScore.textContent = humanScore;
     } else if (humanChoice > computerChoice) {
         console.log('human wins! '+ humanString + ' beats ' + computerString)
         humanScore += 1;
         
+        humanShowScore.textContent = computerScore;
     } else {
         console.log('Its a tie!');
     };
@@ -89,25 +118,12 @@ function computerToString(computerChoice) {
     
 };
 
-//will be void after chaging human choice to button
-function playerToString(humanChoice) {
-    if (humanChoice == 0) {
-        humanString = 'Rock';
-    } else if (humanChoice == 1){
-        humanString = 'Paper';
-    }else {
-        humanString = 'Scissors';
-    };
-    
-};
-
-//change from console to dom
+// no touch
 function displayScore(computerScore, humanScore) {
     console.log('Human score is ' + humanScore);
     console.log('Computer score is ' + computerScore);
-    humanShowScore.textContent = computerScore;
-    computerShowScore.textContent = humanScore;
-
+    humanShowScore.textContent = humanScore;
+    computerShowScore.textContent = computerScore;
 };
 
 //change to dom
@@ -129,11 +145,10 @@ function gameWinner() {
 //not change
 function mainGame() {
     console.log('==============ROUND=============')
-    getHumanChoice();
     getComputerChoice();
     
     computerToString(computerChoice);
-    playerToString(humanChoice);
+
     console.log('------CHOICE-------')
     playRound(computerChoice, humanChoice);
     console.log('------SCORES-------')
@@ -144,49 +159,12 @@ function mainGame() {
 // change to 5 wins
 function playGame() {
     
-    for (let i = 0; i < computerScore || i < humanScore;){
+    for (let i = 0; i > computerScore || i > humanScore;){
         mainGame();
         i++;
         
     };
 
     gameWinner();
-    
-};
-
-//DOMimport
-const humanShowScore = document.querySelector(`#human`);
-const computerShowScore = document.querySelector(`#computer`);
-const choiceShow = document.querySelector(`#choice`);
-const buttonsBox = document.querySelector(`#buttons-box`);
-
-//buttons DOM
-const start = document.querySelector(`#start-button`);
-
-start.addEventListener(`click`, clickStart);
-
-//rockButton
-const rockButton = document.createElement(`button`);
-rockButton.setAttribute(`id`, `rockButton`);
-rockButton.classList.add(`buttons-style`);
-rockButton.textContent = `🪨`;
-//paperButton
-const paperButton = document.createElement(`button`);
-paperButton.setAttribute(`id`, `paperButton`);
-paperButton.classList.add(`buttons-style`);
-paperButton.textContent = `📜`;
-//sciccorsButton
-const sciccorsButton = document.createElement(`button`);
-sciccorsButton.setAttribute(`id`, `sciccorsButton`);
-sciccorsButton.classList.add(`buttons-style`);
-sciccorsButton.textContent = `✂️`;
-
-function clickStart() {
-    start.remove();
-    buttonsBox.appendChild(rockButton);
-    buttonsBox.appendChild(paperButton);
-    buttonsBox.appendChild(sciccorsButton);
-    choice.textContent = `Choose Option`;
-    console.log(`Game Start!`);
     
 };
